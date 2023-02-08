@@ -6,6 +6,7 @@
     const instructions = document.querySelector('#instructions');
     const leftArrow = document.querySelector('#left-arrow');
     const rightArrow = document.querySelector('#right-arrow');
+    const listContainer = document.querySelector('#listContainer');
     
 
 addBtn.addEventListener("click", addTask);
@@ -13,11 +14,13 @@ addBtn.addEventListener("click", addTask);
 //Je définis mon id à 0 pour l'incrémenter ensuite
 var id=0;
 
+
 window.addEventListener('keydown', (e) => {
-    if (e.code === "Enter") {
+    if (e.code === "Enter" && userTask.value != "") {
         addTask();
     }
 });
+
 
 
 // localStorage.getItem('todo', item);
@@ -73,18 +76,53 @@ function checkItem() {
     // alert('Je suis cliqué');
     checkBtn.classList.toggle("checked-btn-style");
     itemText.classList.toggle("checked-text-style");
+    checkBtn.classList.remove("checked-btn-style-edit");
 }
 
 //Je crée un paragraphe qui contient le nom de l'item
-    var itemText = document.createElement("div");
+    var itemText = document.createElement("input");
     itemText.setAttribute("id", "itemText"+id);
+    itemText.setAttribute("disabled", "disabled");
+    itemText.setAttribute("value", userTask.value);
     itemText.classList.add("item");
-    itemText.innerHTML = userTask.value;
+    // itemText.innerHTML = userTask.value;
 
 //Je l'injecte dans mon item container
     itemContainer.appendChild(itemText);
 //Je vide l'input
     userTask.value = "";
+    
+
+    const editButton = document.createElement("button");
+    editButton.innerHTML = '<i class="fa-solid fa-pencil"></i>';
+    editButton.setAttribute("id", "editBtn"+id);
+    editButton.classList.add("edit-btn");
+
+    itemContainer.appendChild(editButton);
+
+
+    editButton.addEventListener("click", editItem);
+    function editItem() {
+        itemText.removeAttribute('disabled');
+        //Je lui applique focus pour qu'on voit bien que c'est éditable
+        itemText.focus();
+        checkBtn.classList.toggle("checked-btn-style-edit");
+        editButton.style.backgroundColor = "rgba(219, 160, 219, 0.521)";
+        //Quand on appuie sur entrée l'input n'est plus éditable
+        window.addEventListener('keydown', (e) => {
+            if (e.code === "Enter") {
+                itemText.setAttribute("disabled", "disabled");
+                checkBtn.classList.remove("checked-btn-style-edit");
+                editButton.style.backgroundColor = "";
+            }
+        });
+    }
+//Je détecte si l'utilisateur place la souris en dehors du champ et le rend inéditable
+    itemText.onblur = function() {
+                itemText.setAttribute("disabled", "disabled");
+                checkBtn.classList.remove("checked-btn-style-edit");
+                editButton.style.backgroundColor = "";
+    }
     
 
 //Je crée le bouton supprimer
@@ -104,6 +142,8 @@ function checkItem() {
 //Je cible l'élément parent du bouton pour supprimer toute la div
        deleteBtn.parentElement.remove();
     }
+
+
 
 }
 

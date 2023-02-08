@@ -21,7 +21,7 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    width: 500px;
+    width: 30vw;
     height: 500px;
     border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.63);
@@ -55,6 +55,7 @@ h1{
 .form {
     display: flex;
     flex-direction: row;
+    width: 95%;
 }
 
 .form * {
@@ -63,7 +64,7 @@ h1{
 
 .user-task {
     margin-top: 12px;
-    width: 400px;
+    width: 100%;
     font-family: 'Handlee', cursive;
     padding: 12px;
     font-size: 1em;
@@ -94,13 +95,24 @@ h1{
 }
 
 .item {
-    width: 370px;
+    width: 100%;
     max-width: 370px;
     background: #fff;
     padding-left: 5px;
     padding-top: 5px;
     padding-bottom: 5px;
+    border: none;
+    font-family: 'Handlee', cursive;
+    font-size: 1em;
 }
+
+.item:focus {
+    outline: none;
+    caret-color: rgb(160, 34, 185);
+    background-color: rgba(219, 160, 219, 0.521);
+    color: #fff;
+}
+
 
 .item-container {
     display: flex;
@@ -108,7 +120,7 @@ h1{
     font-family: 'Handlee', cursive;
     padding: 8px;
     margin: 8px;
-    width: auto;
+    width: 25vw;
     font-size: 1.2em;
     /* background: hotpink; */
 }
@@ -123,17 +135,17 @@ h1{
     border-radius: 10px 0px 0px 10px;
 }
 
-/* .checked-btn:click {
-    background-color: #7bce89;
-} */
-
 .checked-btn i {
     color: #7e7b7b;
     font-size: 1em;
     height: auto;
 }
 
-.checked-btn, .delete-btn {
+.checked-btn i:hover {
+    font-size: 1.3em;
+}
+
+.checked-btn, .delete-btn, .edit-btn {
     border: none;
     cursor: pointer;
 }
@@ -147,11 +159,36 @@ h1{
     text-decoration: line-through;
 }
 
+.checked-btn-style-edit {
+    background-color: rgba(219, 160, 219, 0.521);
+}
+
+.checked-btn-style-edit i {
+    color: #fff;
+}
+
+.edit-btn {
+    width: 40px;
+}
+
+.edit-btn i{
+    font-size: 1em;
+}
+
+.edit-btn i:hover{
+    font-size: 1.3em;
+}
+
 .delete-btn {
     width: 40px;
     height: auto;
     border-radius: 0px 10px 10px 0px;
 }
+
+.delete-btn i {
+    font-size: 1em;
+}
+
 
 .delete-btn:hover {
     color: #fff;
@@ -159,11 +196,17 @@ h1{
 }
 
 #instructions {
+    width: 100%;
     display: none;
     color: rgb(95, 93, 93);
     margin-top: 20px;
     text-align: center;
-    font-size: 1.2em;
+    font-size: 1.2rem;
+}
+
+h2 {
+    width: 100%;
+    height: auto;
 }
 
 .arrow {
@@ -183,7 +226,7 @@ h1{
     width: 30px;
     position: absolute;
     top: 27vh;
-    left: 59vw;
+    left: 59.8vw;
     animation-delay: 1.2s;
     /* j'inverse le sens de l'image
     transform: scaleX(-1); */
@@ -231,3 +274,27 @@ h1{
   }
 
 
+  @media only screen and (max-width: 1489px) {
+    #left-arrow {
+        display: none;
+        width: 40px;
+        position: absolute;
+        top: 31vh;
+        left: 39.5vw;
+    }
+    
+    #right-arrow {
+        display: none;
+        width: 30px;
+        position: absolute;
+        top: 33vh;
+        left: 59vw;
+        animation-delay: 1.2s;
+        /* j'inverse le sens de l'image
+        transform: scaleX(-1); */
+    }
+
+    #instructions {
+        margin-bottom: 20px;
+    }
+  }
