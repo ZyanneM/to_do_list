@@ -168,6 +168,7 @@ h1{
 }
 
 .edit-btn {
+    background-color: #fff;
     width: 40px;
 }
 
@@ -180,6 +181,7 @@ h1{
 }
 
 .delete-btn {
+    background-color: #fff;
     width: 40px;
     height: auto;
     border-radius: 0px 10px 10px 0px;
